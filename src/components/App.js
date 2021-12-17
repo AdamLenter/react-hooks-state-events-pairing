@@ -1,18 +1,23 @@
+import React, {useState} from "react";
+import ReactDOM from 'react-dom';
 import video from "../data/video.js";
+import VideoDiv from "./VideoDiv";
+import CommentsDiv from "./CommentsDiv";
+
 
 function App() {
   console.log("Here's your data:", video);
 
+  const [displayComments, setDisplayComments] = useState(true);
+
+  function handleDisplayComments() {
+    setDisplayComments(!displayComments);
+  }
+
   return (
     <div className="App">
-      <iframe
-        width="919"
-        height="525"
-        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-        frameBorder="0"
-        allowFullScreen
-        title="Thinking in React"
-      />
+      <VideoDiv video = {video} displayComments = {displayComments} handleDisplayComments = {handleDisplayComments} />
+      <CommentsDiv comments = {video.comments} displayComments = {displayComments} />
     </div>
   );
 }
